@@ -8,6 +8,7 @@ End:
 
 Sessions:
 - 01/19/2023
+- 01/20/2023
 
 ## SetUp
 
@@ -110,4 +111,48 @@ create a new method which recieves the data as a parameter.
 Then in the template in the child component we add a new event listener to the event that we created
 in the child component, and the handler method the one which we wrote in the parent component, and 
 in the method we send as a parameter $event, so it can catch the event data.
+
+## Simple Estructural Directives 
+
+Are a way to cahnge the themplate content using JS or TS code embeded in the template, so we can 
+make a little less DRY templates, we generally use them as 
+attributes in a tag, using different structures such as:
+
+### \*ngFor
+This atribute takes the syntax of a simple for loop, generaly of an array or object.
+And we can even add some extra syntax to our for loop, like using the index value while 
+looping an array or object.
+
+\*ngFor="let value in array; index as i"
+
+This will make that the tag that has the for loop, will repeat for each value in the array.
+
+Other extras are:
+- first, true if the element is the first on the list
+- last, ... is the last ...
+- even
+- odd, you are not gonna belive it.
+
+A way to use the first and generall boolean data, is to add an input where we send class.css_class_name. So if the 
+value that we send is true, it adds the css class to the element.
+
+[class.css_name]="value_that_can_be_true"
+
+### \*ngIf
+Pretty simple, it uses the syntax of a simple if. If it is true, it shows the element. If it doesn't, it doesn't.
+We can use it to show some specific data, or try to see if some of the data is available, via a function that 
+checks it, or a simple if value. 
+But checking every single value can be frustating. So we can add an operator to our variables in order
+to check if they exist, and if not, just show a None element, by just using ? next to the variable.
+
+
+[input_example]="value?"
+{{ value?.value_property }}
+
+Then, we can even use the else statement, inside the attribute value, in order to show or do something.
+By using else, we could give and element a custom id. and then show it using the else statement.
+
+\<tag1 *ngIf="if value; else customId" \>
+\<tag2 #customId\>
+
 

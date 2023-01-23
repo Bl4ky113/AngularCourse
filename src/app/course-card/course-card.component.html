@@ -1,0 +1,27 @@
+<div class="course-card">
+  <h2>{{ title }}</h2>
+  <img src="../../favicon.ico" alt="">
+  <div>
+    <p>
+      Hello And Welcome
+    </p>
+  </div>
+  <div>
+    <label for="item-input">Add an item:</label>
+    <input type="text" id="item-input" #newItem>
+    <button type="button" (click)="addNewItem(newItem.value)">Add to parent's list</button>
+  </div>
+  <div>
+    <p>{{ foo1 }}</p>
+    <p>{{ foo2 }}</p>
+    <div *ngIf="foo1">
+      Hello Ifs
+    </div>
+    <div *ngIf="foo2Exists();">
+      This will not be shown
+    </div>
+    <div #fooId>
+      This will be Shown
+    </div>
+  </div>
+</div>
