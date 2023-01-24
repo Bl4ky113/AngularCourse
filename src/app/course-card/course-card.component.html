@@ -17,11 +17,11 @@
     <div *ngIf="foo1">
       Hello Ifs
     </div>
-    <div *ngIf="foo2Exists();">
+    <div *ngIf="foo2Exists(); else fooId">
       This will not be shown
     </div>
-    <div #fooId>
+    <ng-template #fooId>
       This will be Shown
-    </div>
+    </ng-template>
   </div>
 </div>

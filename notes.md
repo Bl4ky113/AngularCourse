@@ -9,6 +9,8 @@ End:
 Sessions:
 - 01/19/2023
 - 01/20/2023
+- 01/21/2023
+- 01/23/2023
 
 ## SetUp
 
@@ -62,7 +64,7 @@ We have to create the callback function in the same exporting class as the data 
 We can also give to the Tags and Elements an sort of name or ID, so we can reference its values and
 properties in the template, even combining with others features.
 
-\<tag #tag_name [value]="tag_name.property" (event)="onEvent(tag_name.value)"\>
+\<tag #tag\_name [value]="tag\_name.property" (event)="onEvent(tag\_name.value)"\>
 
 We can also combine these functions and features. To change some of the data values, 
 the best thing is that if, they are shown in the web page. Angular will update them securely, avoiding any 
@@ -72,7 +74,7 @@ JS injection and bad stuff in general.
 
 In order to create a Component we will have to use the cli, and execute:
 
-$ ng generate component "component_name"
+$ ng generate component "component\_name"
 
 This will create a folder with the component files in our src/app folder
 A html, ts, css and other ts file. Which will have the same structure as the app component that we 
@@ -133,10 +135,10 @@ Other extras are:
 - even
 - odd, you are not gonna belive it.
 
-A way to use the first and generall boolean data, is to add an input where we send class.css_class_name. So if the 
+A way to use the first and generall boolean data, is to add an input where we send class.css\_class_name. So if the 
 value that we send is true, it adds the css class to the element.
 
-[class.css_name]="value_that_can_be_true"
+[class.css\_name]="value_that_can_be_true"
 
 ### \*ngIf
 Pretty simple, it uses the syntax of a simple if. If it is true, it shows the element. If it doesn't, it doesn't.
@@ -146,13 +148,66 @@ But checking every single value can be frustating. So we can add an operator to 
 to check if they exist, and if not, just show a None element, by just using ? next to the variable.
 
 
-[input_example]="value?"
-{{ value?.value_property }}
+[input\_example]="value?"
+{{ value?.value\_property }}
 
 Then, we can even use the else statement, inside the attribute value, in order to show or do something.
 By using else, we could give and element a custom id. and then show it using the else statement.
 
-\<tag1 *ngIf="if value; else customId" \>
-\<tag2 #customId\>
+\<tag1 \*ngIf="if value; else customId" \>
+\<ng-template #customId\>
 
+I've had an error, and the element can't be just any element, it has to be an ng-template element
+so it works, otherwise it doesn't even compile.
 
+### [ngClass]
+Is an [] input type Directives which let us set different styles setting classes for elements.
+We can send a string with the classes that the element will take, not recomended.
+We can also send an array of strings with the classes that the element will take. 
+Or even better an object which declares which classes and which not, deppending on the element,
+and even more better, a function that returns the object, but which can use more logic deciding if 
+the element should have the class. 
+
+The best thing to do is returning Arrays or Strings, for performance sake.
+
+### [ngStyle]
+Is an Input type directive, which as the ngClass directive, can take a string or object to add some custom 
+style to an object directly. We can do pretty much the same as the ngClass, 
+but sending the css property and it's value.
+
+A usefull trick should be using them for css properties that need some strange value, like urls. Or need
+some sort of behaviour.
+
+### [ngSwitch] and \*ngSwitchCase
+
+These are an input and normal type directives, which just works like JS switch statement.
+We just send the variable which will change to the [ngSwitch] input, and create different elements
+where it needs to change using \*ngSwitchCases, and passing to those the value of the variable.
+
+Even if we need to, we can use \*ngSwitchDefault, for default, you know
+
+## Pipes
+
+Pipes are a way that we can use to format some data, especially ugly data such as dates.
+We are going to use them by adding just a pipe and then the formater, and it can take some
+parameters or settings.
+
+There's pipes for all types of data:
+- strings
+- numbers
+- arrays
+- dates
+
+But they can also be used and combined with struturals directives, like for loops
+
+\*ngFor=" obj | keyvalue "
+
+Will create a list of objects with the key and value of the obj.
+
+## Injectable Services Setup
+
+We are just going to change the branch of our project, the angular tutorial repo, to 3-services.
+So we can start from a little bit different web page, but with now an server API ready to send data,
+we have to start it by just running in another terminal from our Angular Server:
+
+$ npm run server
