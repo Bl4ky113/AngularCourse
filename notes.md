@@ -11,6 +11,7 @@ Sessions:
 - 01/20/2023
 - 01/21/2023
 - 01/23/2023
+- 01/24/2023
 
 ## SetUp
 
@@ -211,3 +212,91 @@ So we can start from a little bit different web page, but with now an server API
 we have to start it by just running in another terminal from our Angular Server:
 
 $ npm run server
+
+I had some problems while trying to run the server, mainly, that i didn't have the typesript inplementation of 
+nodejs, so:
+
+$ sudo pacman -Syu ts-node
+
+Now, the server tries to start, but fails because of something.
+
+Yeah, I preffer using another API, so I can focus on learning this thing and not fixing a broken project.
+I'll be using swapi. A Starwars API.
+
+## Http Client in Angular
+
+We can create different services in Angular, one of which is creating a http conection to an backend server,
+so we can fetch data from the server.
+
+But as allways, the course explanation was awfull. So lets check the docs.
+
+So, in order to use http request, we have to go app.module.js
+and from @angular/common/http import HttpClientModule, add it to imports array in @NgModule object.
+It must be after BrowserModule.
+
+Then from common/http in our component we import HttpClient and from core we import OnInit. So 
+we can, from the startup, test and use the http request of our data.
+
+for use OnInit, we add to the component class: implement OnInit, 
+using the constructor of the class, in the parameters we create an attribute for the HttpClient,
+so in ngOnInit() we can use the HttpClient from the context "this".
+
+From there, we can use that variable to do the http requests.
+
+We can use get() method, it takes, the url string, and options for the request.
+Which we can make using HttpParams, which we need to import from common/http
+
+So we have the Client set up, and can do Gets to and API. But we still need to do 
+something with the response, so we need to subscribe() to it, 
+subscribe just takes a function that gets request data, from there we can use it.
+Get can store it in a variable by declaring it first in the component class, and then 
+assign it in the parameter function.
+
+## Async Http Requests in Angular
+
+We can create async Request, we need to import Observable from 'rxjs'.
+Then, we need to create a variable in our component class, but we need to do 
+it observable by adding a $ in the end of the name? Then make it a Observable type
+variable, and the type of value that will take in \<\>
+
+Then when using the http request, we can assign it to the variable, also we could 
+add the type of the request by adding \<\> just before the function's parenthsis.
+
+But only with that, It wouldn't get anything, we need to subscribe to it. But we have to do it in 
+the template.
+We do this by just adding a pipe to the observable variable that we created, async, so 
+the data will show whenever it loads. We can add it to regular pipelines, but only in the beggining.
+And we can use it in for loops, or if statements, if we need to hide the data before it loads.
+
+## Custom Injectable Services
+
+Injectable Services are a way to integrate a system or service only once in the app,
+so it doesn't repeat, and stays more flexible while developing the project.
+
+We create one by using:
+
+ng generate service services/"serviceName"
+
+Then, it will generate the service files in the services folder on src/app. 
+From there, we can create a injectable serivce, mainly in the name.service.ts file.
+
+And we can inject or add it to an component just like the Http Module, on the constructor, we
+add as a parameter a private variable of the service injected
+
+  contructor (..., private foo: serviceName) { ... }
+
+We can move or create all kind of methods with these services, 
+remember, that we can set the type of the value to return by adding
+: and the type of value after the function arguments and before the brackets.
+
+### Put Request and Http Headers
+
+The final class will be about this, well.
+
+We can send with the Http Service a put request, where we pass the url of the API, 
+the value to send and the headers of the request.
+
+For the headers we have to create a new HttpHeaders variable where we define our custom headers with the method
+set, passing the title and its value.
+
+But not gonna lie, that Deep Dive Course Looks Pretty Fine.
