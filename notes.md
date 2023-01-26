@@ -3,15 +3,21 @@
 This is the First and the Corner Stone Of the Angular Courses, although, this one is free. 
 The others wont, so I have to squeeze this course.
 
-Start: 01/19/2023
-End:
+Start Course: 01/19/2023
+End Course: 01/24/2024
 
-Sessions:
+Start Routing: 01/25/2023
+End Routing: 01/25/2023
+
+Sessions Course:
 - 01/19/2023
 - 01/20/2023
 - 01/21/2023
 - 01/23/2023
 - 01/24/2023
+
+Sessions Routing:
+- 01/25/2023
 
 ## SetUp
 
@@ -300,3 +306,39 @@ For the headers we have to create a new HttpHeaders variable where we define our
 set, passing the title and its value.
 
 But not gonna lie, that Deep Dive Course Looks Pretty Fine.
+
+# Routing
+
+Routing is a way that we can get more than one single page per app, so we can 
+have multiple views in order to do stuff in general. But we are going to do a SPA with 
+routing.
+
+We need to create one project from the begging in order to use Routing, 
+because the design of the app will more diferent than a normal one page app.
+
+From there, we can create our own components, and stuff.
+
+But if need to use the routing, we need to add it to app.module in the import list.
+There as well, we will add the components that will have the routing. 
+By passing an array of Objects with the path of the route, and the component. To the method
+forRoot
+
+Then in the root app template, we don't have to use the element of the apps, but we use 
+
+\<router-outlet\>
+
+From there, if we enter local host and into our routes, the components will load acordingly their 
+routes. We can make diferent way to access this routes, links or we can use the routerLink="", to send
+our route.
+
+We can also use our routes to pass parameters, so we can use them on the routing.
+We declate them by just adding route/:variable to our route. And we can send them 
+by using [routerLink]="[route, variable]" as an input attribute and sending the data 
+as an array.
+
+We can also add to the elements that have the routerlink attribute, a routerLinkActive, which adds to 
+the element a css-class so it can have a different style.
+
+But for getting the attribute on the route, we have to import the router service, the active route service and 
+use a switchmap, so we can use ParamMap to get the route attribute.
+
