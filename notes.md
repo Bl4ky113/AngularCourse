@@ -9,6 +9,9 @@ End Course: 01/24/2024
 Start Routing: 01/25/2023
 End Routing: 01/25/2023
 
+Start Forms: 02/02/2023
+End Forms: 
+
 Sessions Course:
 - 01/19/2023
 - 01/20/2023
@@ -18,6 +21,10 @@ Sessions Course:
 
 Sessions Routing:
 - 01/25/2023
+
+Sessions Froms:
+- 02/02/2023
+- 02/05/2023
 
 ## SetUp
 
@@ -341,4 +348,69 @@ the element a css-class so it can have a different style.
 
 But for getting the attribute on the route, we have to import the router service, the active route service and 
 use a switchmap, so we can use ParamMap to get the route attribute.
+
+# Froms
+
+## What are Forms in Angular
+
+Forms are a way that we, as developers, can catch and get input or data from the user. There's two types of 
+forms. Reactive and Template Driven. Each functions differently than the other.
+
+Reactive forms are the standard froms which take the data and pass it to the angular client side, then to 
+the server, or whatever you need them to do. They are more reliable, and usable, testable, and all
+because they are just regular forms.
+
+Template Driven, are only design and created on the template, but they are asyncronous, can mutate, and 
+general flexiblity between the template boundries. 
+
+## Making a Form
+
+We can set Reactive or TB forms with the same base classes, what changes its the way we use them.
+The base classes are genrealy just a tacker for one or more forms, even custom elements outside the form.
+Some of them are:
+- FormControl: one value or form control
+- ...Group: collection of ...
+- ...Array: Array of ...
+- ControlValueAccessor: Bridge between an FormControl and DOM elements.
+
+For a reactive Form, we just can add them as an input to the form input of our html template
+making a direct conection between them.
+
+template:
+\<input [formControl]="formValueName"\>
+ts file:
+formValueName = new FormControl('');
+
+For a TB form, we use the directive ngModel and pass the variable name, that is going to take 
+the form value indirectly
+
+template:
+\<input [(ngModel)]="formValueName"\>
+ts file:
+formValueName = "";
+
+## Data Flows in a Form
+
+As we have spoken, Reactive and TB Forms handle differently the way the get the data, but how
+exactly? 
+
+For Reactive Forms. The user inputs "blue" it isn't shown yet, the form sets an event, then the FormControl via
+an observable called valueChanges, sets the value "blue". If we have subcribed to this 
+observable, we can do something with the new value. Then its called the setValue method, to 
+show to the user it's input. 
+
+For TB Forms. The user inputs "blue", setting the value in the form with setValue, send then the new value
+via an observable called valueChanges, the subscribers of valueChanges gets the new input, sends another event 
+via viewToModelUpdate method which updates the initial formInput with the new input.
+
+With this, we can see that TB forms shows the value, and then process it. 
+With Reactive, it first reacts to or process it, and then shows it.
+
+### Data Mutability
+For the mutability of the forms, changing the value of the forms. 
+
+TB forms only updates the value whenever the user has stoped inputing the 
+new value, tracking only unique changes and not simple changes on the input.
+
+For Reactive Forms, it updates every little change of the input.
 
